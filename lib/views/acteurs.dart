@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../models/acteur.dart';
+import 'acteur/tile.dart';
+import '../widgets/shimmerlist.dart';
 
 class ActeursWidget extends StatelessWidget {
   const ActeursWidget({super.key});
@@ -16,41 +18,20 @@ class ActeursWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Acteurs")),
       body: FutureBuilder<List<Acteur>>(
         future: getActeurs(),
         builder:
             (context, snapshot) => switch (snapshot.connectionState) {
-              ConnectionState.waiting => Text("En cours"),
+              ConnectionState.waiting => buildShimmerList(),
               ConnectionState.done => switch (snapshot) {
                 _ when !snapshot.hasData => Text("Aucune donnée"),
                 _ when snapshot.data!.isEmpty => Text("Aucun acteur trouvé"),
                 _ => ListView.builder(
                   itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(snapshot.data![index].nom),
-                      subtitle:
-                          snapshot.data![index].age != null
-                              ? Text("${snapshot.data![index].age} ans")
-                              : Text(""),
-                      trailing: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.chevron_right),
-                      ),
-                      leading: CircleAvatar(
-                        child: ClipOval(
-                          child: FadeInImage.assetNetwork(
-                            placeholder: 'profile.jpg',
-                            image:
-                                "http://127.0.0.1:4003/insecure/w:300/rt:fill/g:no/plain/local:///profiles/${snapshot.data![index].personneId}.jpg",
-                            imageErrorBuilder: (context, error, stackTrace) {
-                              return Image.asset('profile.jpg');
-                            },
-                          ),
-                        ),
-                      ),
-                    );
-                  },
+                  itemBuilder:
+                      (context, index) =>
+                          ActeurTile(acteur: snapshot.data![index]),
                 ),
               },
               _ => Text("Erreur"),
