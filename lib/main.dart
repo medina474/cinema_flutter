@@ -10,6 +10,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Scaffold(body: ActeursWidget()));
+    return MaterialApp(
+      title: 'Cinéma',
+      theme: ThemeData(primarySwatch: Colors.indigo),
+      home: Scaffold(body: ActeursWidget()),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
