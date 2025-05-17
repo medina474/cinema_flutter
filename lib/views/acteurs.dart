@@ -13,9 +13,8 @@ class ActeursWidget extends StatefulWidget {
   State<ActeursWidget> createState() => _ActeursWidgetState();
 }
 
-class _ActeursWidgetState extends State<ActeursWidget> {
-  _ActeursWidgetState();
-
+class _ActeursWidgetState extends State<ActeursWidget>
+    with SingleTickerProviderStateMixin {
   late Future<List<Acteur>> futureActors;
   List<Acteur> allActors = [];
   List<Acteur> filteredActors = [];
@@ -23,16 +22,30 @@ class _ActeursWidgetState extends State<ActeursWidget> {
   bool isSearching = false;
   TextEditingController searchController = TextEditingController();
 
+  late AnimationController _iconRotationController;
+
   @override
   void initState() {
     super.initState();
     futureActors = getActeurs();
+    _iconRotationController = AnimationController(
+      duration: Duration(milliseconds: 300),
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _iconRotationController.dispose();
+    searchController.dispose();
+    super.dispose();
   }
 
   void startSearch() {
     setState(() {
       isSearching = true;
       filteredActors = allActors;
+      _iconRotationController.forward();
     });
   }
 
@@ -40,8 +53,6 @@ class _ActeursWidgetState extends State<ActeursWidget> {
     setState(() {
       final encoder = DoubleMetaphone.withMaxLength(10);
       final encoding = encoder.encode(query);
-      debugPrint("$query ${encoding?.alternates}");
-
       if (encoding != null) {
         filteredActors =
             allActors
@@ -59,6 +70,7 @@ class _ActeursWidgetState extends State<ActeursWidget> {
       isSearching = false;
       searchController.clear();
       filteredActors = allActors;
+      _iconRotationController.reverse();
     });
   }
 
@@ -78,22 +90,35 @@ class _ActeursWidgetState extends State<ActeursWidget> {
         title:
             isSearching
                 ? TextField(
+                  key: ValueKey('searchField'),
                   controller: searchController,
                   autofocus: true,
                   decoration: InputDecoration(
                     hintText: 'Rechercher...',
                     border: InputBorder.none,
-                    suffixIcon: IconButton(
-                      icon: Icon(Icons.clear),
-                      onPressed: stopSearch,
-                    ),
                   ),
                   onChanged: updateSearch,
                 )
-                : Text("Acteurs"),
+                : Text("Acteurs", key: ValueKey('title')),
         actions: [
-          if (!isSearching)
-            IconButton(icon: Icon(Icons.search), onPressed: startSearch),
+          IconButton(
+            icon: AnimatedBuilder(
+              animation: _iconRotationController,
+              builder: (context, child) {
+                return Transform.rotate(
+                  angle: _iconRotationController.value * 0.5 * 3.1416,
+                  child: Icon(isSearching ? Icons.close : Icons.search),
+                );
+              },
+            ),
+            onPressed: () {
+              if (isSearching) {
+                stopSearch();
+              } else {
+                startSearch();
+              }
+            },
+          ),
         ],
       ),
       body: FutureBuilder<List<Acteur>>(
