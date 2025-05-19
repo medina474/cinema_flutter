@@ -51,7 +51,7 @@ class _CarteWidgetState extends State<CarteWidget> {
     _positionUtilisateur = LatLng(position.latitude, position.longitude);
 
     setState(() {
-      _mapController.move(_positionUtilisateur, 12.0);
+      _mapController.move(_positionUtilisateur, 11.0);
     });
   }
 
@@ -63,7 +63,7 @@ class _CarteWidgetState extends State<CarteWidget> {
         mapController: _mapController,
         options: MapOptions(
           initialCenter: _positionUtilisateur,
-          initialZoom: 13,
+          initialZoom: 11.0,
         ),
         children: [
           TileLayer(

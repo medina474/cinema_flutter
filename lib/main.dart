@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cinéma',
       theme: ThemeData(primarySwatch: Colors.indigo),
-      home: Scaffold(body: CarteWidget()),
+      home: Scaffold(body: ActeursWidget()),
       debugShowCheckedModeBanner: false,
     );
   }

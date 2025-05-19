@@ -1,3 +1,4 @@
+import 'package:cinema/views/role.dart';
 import 'package:flutter/material.dart';
 import '../../models/acteur.dart';
 import '../../widgets/networkfadeinimage.dart';
@@ -11,7 +12,10 @@ class ActeurTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Action au clic
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => RoleWidget(acteur: acteur)),
+        );
       },
       splashColor: Colors.black.withValues(alpha: 0.1), // Couleur de l'effet
       highlightColor: Colors.transparent,
