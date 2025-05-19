@@ -14,7 +14,14 @@ Widget buildShimmerTile() {
             children: [
               Container(height: 12, color: Colors.grey, width: 150),
               const SizedBox(height: 8),
-              Container(height: 12, color: Colors.grey, width: 100),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(height: 12, color: Colors.grey, width: 30),
+                  const SizedBox(height: 8),
+                  Container(height: 12, color: Colors.grey, width: 100),
+                ],
+              ),
             ],
           ),
         ),

@@ -13,7 +13,7 @@ class ActeurTile extends StatelessWidget {
       onTap: () {
         // Action au clic
       },
-      splashColor: Colors.black.withOpacity(0.1), // Couleur de l'effet
+      splashColor: Colors.black.withValues(alpha: 0.1), // Couleur de l'effet
       highlightColor: Colors.transparent,
       child: ListTile(
         title: Text(acteur.nom),

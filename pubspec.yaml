@@ -12,6 +12,9 @@ dependencies:
   http: ^1.0.0
   shimmer: ^3.0.0
   dart_phonetics: ^1.0.1
+  flutter_map: ^8.1.1
+  latlong2: ^0.9.1
+  geolocator: ^14.0.0
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +26,4 @@ flutter:
 
 assets:
   - profile.jpg
+  - flags/

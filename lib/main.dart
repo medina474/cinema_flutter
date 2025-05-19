@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'views/carte.dart';
 import 'views/acteurs.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cinéma',
       theme: ThemeData(primarySwatch: Colors.indigo),
-      home: Scaffold(body: ActeursWidget()),
+      home: Scaffold(body: CarteWidget()),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,6 +1,5 @@
-import 'dart:convert';
+import 'package:cinema/api/actor_service.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import '../models/acteur.dart';
 import 'acteur/tile.dart';
 import '../widgets/shimmerlist.dart';
@@ -22,12 +21,14 @@ class _ActeursWidgetState extends State<ActeursWidget>
   bool isSearching = false;
   TextEditingController searchController = TextEditingController();
 
+  final service = ActeurService();
+
   late AnimationController _iconRotationController;
 
   @override
   void initState() {
     super.initState();
-    futureActors = getActeurs();
+    futureActors = service.fetchActeurs();
     _iconRotationController = AnimationController(
       duration: Duration(milliseconds: 300),
       vsync: this,
@@ -74,6 +75,7 @@ class _ActeursWidgetState extends State<ActeursWidget>
     });
   }
 
+  /*
   Future<List<Acteur>> getActeurs() async {
     final url = 'http://localhost:4000/acteurs';
     final response = await http.get(Uri.parse(url));
@@ -81,6 +83,20 @@ class _ActeursWidgetState extends State<ActeursWidget>
     allActors = liste.map((elt) => Acteur.fromJson(elt)).toList();
     filteredActors = allActors;
     return allActors;
+  }
+*/
+
+  Widget _buildActorList(List<Acteur> data) {
+    if (filteredActors.isEmpty && searchController.text.isEmpty) {
+      allActors = data;
+      filteredActors = data;
+    }
+
+    return ListView.builder(
+      itemCount: filteredActors.length,
+      itemBuilder:
+          (context, index) => ActeurTile(acteur: filteredActors[index]),
+    );
   }
 
   @override
@@ -129,12 +145,7 @@ class _ActeursWidgetState extends State<ActeursWidget>
               ConnectionState.done => switch (snapshot) {
                 _ when !snapshot.hasData => Text("Aucune donnée"),
                 _ when snapshot.data!.isEmpty => Text("Aucun acteur trouvé"),
-                _ => ListView.builder(
-                  itemCount: filteredActors.length,
-                  itemBuilder:
-                      (context, index) =>
-                          ActeurTile(acteur: filteredActors[index]),
-                ),
+                _ => _buildActorList(snapshot.data!),
               },
               _ => Text("Erreur"),
             },
