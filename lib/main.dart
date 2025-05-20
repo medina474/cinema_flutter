@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'views/carte.dart';
 import 'views/acteurs.dart';
 
 void main() {

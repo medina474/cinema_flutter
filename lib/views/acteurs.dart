@@ -1,4 +1,4 @@
-import 'package:cinema/api/actor_service.dart';
+import 'package:cinema/api/acteur_service.dart';
 import 'package:flutter/material.dart';
 import '../models/acteur.dart';
 import 'acteur/tile.dart';
@@ -28,7 +28,7 @@ class _ActeursWidgetState extends State<ActeursWidget>
   @override
   void initState() {
     super.initState();
-    futureActors = service.fetchActeurs();
+    futureActors = service.fetch();
     _iconRotationController = AnimationController(
       duration: Duration(milliseconds: 300),
       vsync: this,
@@ -74,17 +74,6 @@ class _ActeursWidgetState extends State<ActeursWidget>
       _iconRotationController.reverse();
     });
   }
-
-  /*
-  Future<List<Acteur>> getActeurs() async {
-    final url = 'http://localhost:4000/acteurs';
-    final response = await http.get(Uri.parse(url));
-    final List<dynamic> liste = jsonDecode(response.body);
-    allActors = liste.map((elt) => Acteur.fromJson(elt)).toList();
-    filteredActors = allActors;
-    return allActors;
-  }
-*/
 
   Widget _buildActorList(List<Acteur> data) {
     if (filteredActors.isEmpty && searchController.text.isEmpty) {

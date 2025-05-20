@@ -25,11 +25,11 @@ class Role {
 }
 
 class Films {
-  int annee;
+  int? annee;
   String titre;
   int filmId;
 
-  Films({required this.annee, required this.titre, required this.filmId});
+  Films({this.annee, required this.titre, required this.filmId});
 
   factory Films.fromJson(Map<String, dynamic> json) => Films(
     annee: json["annee"],

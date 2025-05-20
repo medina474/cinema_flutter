@@ -17,16 +17,16 @@ Widget buildShimmerTile() {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(height: 12, color: Colors.grey, width: 30),
-                  const SizedBox(height: 8),
-                  Container(height: 12, color: Colors.grey, width: 100),
+                  Container(height: 12, color: Colors.grey, width: 20),
+                  const SizedBox(width: 8),
+                  Container(height: 12, color: Colors.grey, width: 50),
                 ],
               ),
             ],
           ),
         ),
         const SizedBox(width: 16),
-        const Icon(Icons.chevron_right, color: Colors.grey),
+        const Icon(Icons.chevron_right),
       ],
     ),
   );

@@ -6,7 +6,7 @@ import '../models/acteur.dart';
 class ActeurService {
   final _client = ApiClient();
 
-  Future<List<Acteur>> fetchActeurs() async {
+  Future<List<Acteur>> fetch() async {
     final response = await _client.get('/acteurs');
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body) as List;
