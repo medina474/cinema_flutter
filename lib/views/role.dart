@@ -11,6 +11,21 @@ class RoleWidget extends StatelessWidget {
 
   RoleWidget({required this.acteur, super.key});
 
+  /*
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showErreur(
+    BuildContext context,
+  ) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.redAccent,
+        content: Text(
+          "Erreur lors du fetch des établissements : $e",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(

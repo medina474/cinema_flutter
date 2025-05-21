@@ -1,7 +1,7 @@
 name: cinema
-description: "Travaux pratiques "
+description: "Travaux pratiques INFO 2"
 publish_to: 'none'
-version: 0.1.0
+version: 0.2025.0
 
 environment:
   sdk: ^3.7.2
@@ -21,6 +21,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  test: ^1.25.15
 
 flutter:
   uses-material-design: true

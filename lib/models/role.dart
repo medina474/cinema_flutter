@@ -2,10 +2,6 @@ import 'dart:convert';
 
 import 'package:cinema/models/genre.dart';
 
-Role roleFromJson(String str) => Role.fromJson(json.decode(str));
-
-String roleToJson(Role data) => json.encode(data.toJson());
-
 class Role {
   String alias;
   String role;
@@ -18,12 +14,6 @@ class Role {
     role: json["role"],
     films: Films.fromJson(json["films"]),
   );
-
-  Map<String, dynamic> toJson() => {
-    "alias": alias,
-    "role": role,
-    "films": films.toJson(),
-  };
 }
 
 class Films {
@@ -31,6 +21,8 @@ class Films {
   String titre;
   int? annee;
   int duree;
+  double moyenne;
+  double votants;
   List<Genre> genres;
 
   Films({
@@ -39,6 +31,8 @@ class Films {
     required this.filmId,
     required this.duree,
     required this.genres,
+    required this.moyenne,
+    required this.votants,
   });
 
   factory Films.fromJson(Map<String, dynamic> json) => Films(
@@ -46,12 +40,8 @@ class Films {
     titre: json["titre"],
     annee: json["annee"],
     duree: json["duree"],
+    moyenne: json["votes"][0]["moyenne"],
+    votants: json["votes"][0]["votants"],
     genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
   );
-
-  Map<String, dynamic> toJson() => {
-    "annee": annee,
-    "titre": titre,
-    "film_id": filmId,
-  };
 }

@@ -1,3 +1,4 @@
+import 'package:cinema/widgets/stars.dart';
 import 'package:flutter/material.dart';
 import '../../models/role.dart';
 import 'package:cinema/utils/dateutils.dart';
@@ -66,6 +67,11 @@ class RoleTile extends StatelessWidget {
                       Text(
                         AppDateUtils.formatDuration(role.films.duree),
                         style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      SizedBox(width: 8),
+                      StarRatingOverlay(
+                        rating: role.films.moyenne / 2.0,
+                        size: 16,
                       ),
                     ],
                   ),
