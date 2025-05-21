@@ -5,31 +5,18 @@ import 'package:flutter/material.dart';
 import 'role/tile.dart';
 import 'package:cinema/api/role_service.dart';
 
-class RoleWidget extends StatefulWidget {
+class RoleWidget extends StatelessWidget {
   final Acteur acteur;
-
-  const RoleWidget({required this.acteur, super.key});
-
-  @override
-  State<RoleWidget> createState() => _RoleWidgetState();
-}
-
-class _RoleWidgetState extends State<RoleWidget> {
   final service = RoleService();
-  late Future<List<Role>> futureRole;
 
-  @override
-  void initState() {
-    futureRole = service.fetch(widget.acteur.personneId);
-    super.initState();
-  }
+  RoleWidget({required this.acteur, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.acteur.nom)),
+      appBar: AppBar(title: Text(acteur.nom)),
       body: FutureBuilder<List<Role>>(
-        future: futureRole,
+        future: service.fetch(acteur.personneId),
         builder:
             (context, snapshot) => switch (snapshot.connectionState) {
               ConnectionState.waiting => buildShimmerList(),

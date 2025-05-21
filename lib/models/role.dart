@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cinema/models/genre.dart';
+
 Role roleFromJson(String str) => Role.fromJson(json.decode(str));
 
 String roleToJson(Role data) => json.encode(data.toJson());
@@ -25,16 +27,26 @@ class Role {
 }
 
 class Films {
-  int? annee;
-  String titre;
   int filmId;
+  String titre;
+  int? annee;
+  int duree;
+  List<Genre> genres;
 
-  Films({this.annee, required this.titre, required this.filmId});
+  Films({
+    this.annee,
+    required this.titre,
+    required this.filmId,
+    required this.duree,
+    required this.genres,
+  });
 
   factory Films.fromJson(Map<String, dynamic> json) => Films(
-    annee: json["annee"],
-    titre: json["titre"],
     filmId: json["film_id"],
+    titre: json["titre"],
+    annee: json["annee"],
+    duree: json["duree"],
+    genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {

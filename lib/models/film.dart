@@ -4,6 +4,9 @@
 
 import 'dart:convert';
 
+import 'package:cinema/models/genre.dart';
+import 'package:cinema/models/motscle.dart';
+
 Film filmFromJson(String str) => Film.fromJson(json.decode(str));
 
 String filmToJson(Film data) => json.encode(data.toJson());
@@ -151,30 +154,6 @@ class Personnes {
     "artiste": artiste,
     "personne_id": personneId,
   };
-}
-
-class Genre {
-  String genre;
-  int genreId;
-
-  Genre({required this.genre, required this.genreId});
-
-  factory Genre.fromJson(Map<String, dynamic> json) =>
-      Genre(genre: json["genre"], genreId: json["genre_id"]);
-
-  Map<String, dynamic> toJson() => {"genre": genre, "genre_id": genreId};
-}
-
-class Motscle {
-  String motcle;
-  int motcleId;
-
-  Motscle({required this.motcle, required this.motcleId});
-
-  factory Motscle.fromJson(Map<String, dynamic> json) =>
-      Motscle(motcle: json["motcle"], motcleId: json["motcle_id"]);
-
-  Map<String, dynamic> toJson() => {"motcle": motcle, "motcle_id": motcleId};
 }
 
 class Resume {

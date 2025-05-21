@@ -7,7 +7,7 @@ class RoleService {
 
   Future<List<Role>> fetch(int acteurId) async {
     final response = await _client.get(
-      '/equipes?personne_id=eq.$acteurId&role=eq.acteur&select=alias,role,films(film_id, titre, annee)',
+      '/equipes?personne_id=eq.$acteurId&role=eq.acteur&select=alias,role,films(film_id, titre, annee, duree, genres(*))',
     );
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body) as List;
