@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cinema/models/genre.dart';
 
 class Role {

@@ -1,12 +1,14 @@
 import 'package:cinema/api/acteur_service.dart';
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
 import '../models/acteur.dart';
 import 'acteur/tile.dart';
 import '../widgets/shimmerlist.dart';
 import 'package:dart_phonetics/dart_phonetics.dart';
 
 class ActeursWidget extends StatefulWidget {
-  const ActeursWidget({super.key});
+  final ActeurService acteurRepo;
+  const ActeursWidget({required this.acteurRepo, super.key});
 
   @override
   State<ActeursWidget> createState() => _ActeursWidgetState();
@@ -21,14 +23,12 @@ class _ActeursWidgetState extends State<ActeursWidget>
   bool isSearching = false;
   TextEditingController searchController = TextEditingController();
 
-  final service = ActeurService();
-
   late AnimationController _iconRotationController;
 
   @override
   void initState() {
     super.initState();
-    futureActors = service.fetch();
+    futureActors = widget.acteurRepo.fetch();
     _iconRotationController = AnimationController(
       duration: Duration(milliseconds: 300),
       vsync: this,

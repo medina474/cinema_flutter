@@ -127,7 +127,6 @@ class _CarteWidgetState extends State<CarteWidget> {
                           e.geometry.coordinates[0],
                         ),
                       );
-                      ;
 
                       final popupOffset = Offset(
                         projected.dx.toDouble(),

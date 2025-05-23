@@ -1,6 +1,12 @@
-import 'dart:convert';
+import 'package:isar/isar.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'acteur.g.dart';
+
+@collection
+@JsonSerializable()
 class Acteur {
+  Id id = Isar.autoIncrement;
   int personneId;
   String nom;
   String metaphone;
