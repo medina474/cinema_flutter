@@ -1,7 +1,7 @@
 import 'package:cinema/views/role.dart';
 import 'package:flutter/material.dart';
-import '../../models/acteur.dart';
-import '../../widgets/networkfadeinimage.dart';
+import 'acteur.dart';
+import '../widgets/networkfadeinimage.dart';
 
 class ActeurTile extends StatelessWidget {
   final Acteur acteur;

@@ -1,4 +1,4 @@
-import 'package:cinema/api/acteur_service.dart';
+import 'package:cinema/acteurs/acteur_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() async {

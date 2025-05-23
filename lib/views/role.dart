@@ -1,6 +1,6 @@
-import 'package:cinema/models/acteur.dart';
+import 'package:cinema/acteurs/acteur.dart';
 import 'package:cinema/models/role.dart';
-import 'package:cinema/widgets/shimmerlist.dart';
+import 'package:cinema/acteurs/shimmerlist.dart';
 import 'package:flutter/material.dart';
 import 'role/tile.dart';
 import 'package:cinema/api/role_service.dart';

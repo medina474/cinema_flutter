@@ -1,8 +1,8 @@
-import 'package:cinema/api/acteur_service.dart';
+import 'package:cinema/acteurs/acteur_service.dart';
 import 'package:flutter/material.dart';
-import '../models/acteur.dart';
-import 'acteur/tile.dart';
-import '../widgets/shimmerlist.dart';
+import 'acteur.dart';
+import 'acteur_tile.dart';
+import 'shimmerlist.dart';
 import 'package:dart_phonetics/dart_phonetics.dart';
 
 class ActeursWidget extends StatefulWidget {

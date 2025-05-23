@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'api_client.dart';
-import '../models/acteur.dart';
+import '../api/api_client.dart';
+import 'acteur.dart';
 
 class ActeurService {
   ActeurService();

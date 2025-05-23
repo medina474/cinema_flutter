@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter_map/flutter_map.dart';
 
 import 'api_client.dart';
-import '../models/etablissement.dart';
+import '../carte/etablissement.dart';
 
 class EtablissementService {
   final _client = ApiClient(port: 3002);

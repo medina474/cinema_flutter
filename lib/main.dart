@@ -1,5 +1,6 @@
+import 'package:cinema/main_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'views/acteurs.dart';
+import 'acteurs/acteurs.dart';
 
 void main() async {
   runApp(MainApp());
@@ -13,7 +14,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cinéma',
       theme: ThemeData(primarySwatch: Colors.indigo),
-      home: ActeursWidget(),
+      home: MainScaffold(),
       debugShowCheckedModeBanner: true,
     );
   }
