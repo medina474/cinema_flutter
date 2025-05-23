@@ -1,14 +1,12 @@
 import 'package:cinema/api/acteur_service.dart';
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
 import '../models/acteur.dart';
 import 'acteur/tile.dart';
 import '../widgets/shimmerlist.dart';
 import 'package:dart_phonetics/dart_phonetics.dart';
 
 class ActeursWidget extends StatefulWidget {
-  final ActeurService acteurRepo;
-  const ActeursWidget({required this.acteurRepo, super.key});
+  const ActeursWidget({super.key});
 
   @override
   State<ActeursWidget> createState() => _ActeursWidgetState();
@@ -16,6 +14,7 @@ class ActeursWidget extends StatefulWidget {
 
 class _ActeursWidgetState extends State<ActeursWidget>
     with SingleTickerProviderStateMixin {
+  final service = ActeurService();
   late Future<List<Acteur>> futureActors;
   List<Acteur> allActors = [];
   List<Acteur> filteredActors = [];
@@ -28,7 +27,7 @@ class _ActeursWidgetState extends State<ActeursWidget>
   @override
   void initState() {
     super.initState();
-    futureActors = widget.acteurRepo.fetch();
+    futureActors = service.fetch();
     _iconRotationController = AnimationController(
       duration: Duration(milliseconds: 300),
       vsync: this,
