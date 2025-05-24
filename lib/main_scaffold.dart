@@ -18,15 +18,6 @@ class _MainScaffoldState extends State<MainScaffold> {
     GlobalKey<NavigatorState>(),
   ];
 
-  Future<bool> _onWillPop() async {
-    final currentNavigator = _navigatorKeys[_currentIndex].currentState!;
-    if (currentNavigator.canPop()) {
-      currentNavigator.pop();
-      return false;
-    }
-    return true;
-  }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -35,9 +26,6 @@ class _MainScaffoldState extends State<MainScaffold> {
         final navigator = _navigatorKeys[_currentIndex].currentState!;
         if (navigator.canPop()) {
           navigator.pop();
-          return; // Ne pas quitter l’app
-        } else {
-          return; // Autoriser le pop système
         }
       },
       child: Scaffold(
@@ -48,7 +36,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               child: Navigator(
                 key: _navigatorKeys[index],
                 onGenerateRoute: (settings) {
-                  return MaterialPageRoute(builder: (_) => _getRootPage(index));
+                  return MaterialPageRoute(builder: (_) => _getPage(index));
                 },
               ),
             );
@@ -69,17 +57,14 @@ class _MainScaffoldState extends State<MainScaffold> {
               icon: Icon(Icons.theater_comedy),
               label: 'Acteurs',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Réglages',
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.quiz), label: 'Quiz'),
           ],
         ),
       ),
     );
   }
 
-  Widget _getRootPage(int index) {
+  Widget _getPage(int index) {
     return switch (index) {
       0 => const CarteWidget(),
       1 => const ActeursWidget(),
