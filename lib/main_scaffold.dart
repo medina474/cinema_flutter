@@ -29,8 +29,17 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: _onWillPop,
+    return PopScope(
+      canPop: false, // empêche le pop automatique
+      onPopInvokedWithResult: (didPop, result) async {
+        final navigator = _navigatorKeys[_currentIndex].currentState!;
+        if (navigator.canPop()) {
+          navigator.pop();
+          return; // Ne pas quitter l’app
+        } else {
+          return; // Autoriser le pop système
+        }
+      },
       child: Scaffold(
         body: Stack(
           children: List.generate(3, (index) {
@@ -55,8 +64,11 @@ class _MainScaffoldState extends State<MainScaffold> {
             }
           },
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
             BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Carte'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.theater_comedy),
+              label: 'Acteurs',
+            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: 'Réglages',
@@ -68,15 +80,11 @@ class _MainScaffoldState extends State<MainScaffold> {
   }
 
   Widget _getRootPage(int index) {
-    switch (index) {
-      case 0:
-        return const CarteWidget();
-      case 1:
-        return const ActeursWidget();
-      case 2:
-        return const CarteWidget();
-      case _:
-        return const SizedBox();
-    }
+    return switch (index) {
+      0 => const CarteWidget(),
+      1 => const ActeursWidget(),
+      2 => const ActeursWidget(),
+      _ => const SizedBox(),
+    };
   }
 }

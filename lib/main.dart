@@ -1,6 +1,5 @@
-import 'package:cinema/main_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'acteurs/acteurs.dart';
+import 'package:cinema/main_scaffold.dart';
 
 void main() async {
   runApp(MainApp());

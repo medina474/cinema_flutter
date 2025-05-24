@@ -1,6 +1,6 @@
 import 'package:cinema/acteurs/acteur_service.dart';
 import 'package:flutter/material.dart';
-import 'acteur.dart';
+import 'acteur_model.dart';
 import 'acteur_tile.dart';
 import 'shimmerlist.dart';
 import 'package:dart_phonetics/dart_phonetics.dart';

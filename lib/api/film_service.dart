@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'api_client.dart';
-import '../models/film.dart';
+import '../film/film_model.dart';
 
 class FilmService {
   final _client = ApiClient();
